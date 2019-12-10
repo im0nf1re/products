@@ -4,3 +4,10 @@ C:\Users\Артем\Desktop\Products\Products\bin\Debug\Products.pdb
 C:\Users\Артем\Desktop\Products\Products\obj\Debug\Products.csprojAssemblyReference.cache
 C:\Users\Артем\Desktop\Products\Products\obj\Debug\Products.exe
 C:\Users\Артем\Desktop\Products\Products\obj\Debug\Products.pdb
+C:\myProjects\products\Products\bin\Debug\Products.exe.config
+C:\myProjects\products\Products\bin\Debug\Products.exe
+C:\myProjects\products\Products\bin\Debug\Products.pdb
+C:\myProjects\products\Products\obj\Debug\Products.csprojAssemblyReference.cache
+C:\myProjects\products\Products\obj\Debug\Products.csproj.CoreCompileInputs.cache
+C:\myProjects\products\Products\obj\Debug\Products.exe
+C:\myProjects\products\Products\obj\Debug\Products.pdb

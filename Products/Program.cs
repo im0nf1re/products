@@ -21,11 +21,17 @@ namespace Products
         }
 
 
-        static List<Dish> Dishes = new List<Dish>();
+        static List<Dish> Basis = new List<Dish>();
+        static List<Dish> Garnish = new List<Dish>();
+
         static Random Rnd = new Random();
 
         static private void MakeAMenu()
         {
+            Console.WriteLine("");
+            ///////////////
+            Console.WriteLine("На сколько дней вы хотите составить меню?");
+            int days = Convert.ToInt32(Console.ReadLine());
             
         }
 
@@ -72,6 +78,9 @@ namespace Products
                             break;
                     }
                     break;
+
+                default: ChooseOption(position);
+                    break;
             }
 
             Console.WriteLine("");
@@ -79,17 +88,21 @@ namespace Products
 
         static private void MakeDishesList()
         {
-            StreamReader sr = new StreamReader(@"Dishes.txt", Encoding.Default);
+            makeList(Basis, @"Lists/Basis.txt");
+            makeList(Garnish, @"Lists/Garnish.txt");
+        }
 
-            Dishes.Clear();
+        static void makeList(List<Dish> list, string path)
+        {
+            StreamReader sr = new StreamReader(path, Encoding.Default);
+
+            list.Clear();
 
             while (sr.Peek() != -1)
             {
-                string str = sr.ReadLine();
-                string name = str.Split(',')[0];
-                bool basis = str.Split(',')[1] == "0" ? false : true;
+                string name = sr.ReadLine();
 
-                Dishes.Add(new Dish(name, basis, Dishes.Count));
+                list.Add(new Dish(name, list.Count));
             }
 
             sr.Close();
@@ -98,12 +111,24 @@ namespace Products
         static void PrintDishesList()
         {
             Console.WriteLine("");
-            foreach (Dish dish in Dishes)
-            {
-                Console.WriteLine(dish.Id + ". " +  dish.Name + ", " + dish.Basis);
-            }
+            ///////////////
+            Console.WriteLine("Основные блюда:");
+            printList(Basis);
+
+            Console.WriteLine("Гарниры:");
+            printList(Garnish);
 
             ChooseOption("printlist");
+        }
+
+        static void printList(List<Dish> list)
+        {
+            foreach (Dish dish in list)
+            {
+                Console.WriteLine(dish.Id + ". " + dish.Name);
+            }
+
+            Console.WriteLine("");
         }
 
         static void AddDish()
@@ -112,11 +137,13 @@ namespace Products
             string name = Console.ReadLine();
             Console.WriteLine("Если блюдо главное - введите 1, если гарнир - 0");
             string basis = Console.ReadLine();
-            
+            StreamWriter sw;
+            if (basis == "1")
+                sw = new StreamWriter(@"Lists/Basis.txt", true, Encoding.Default);
+            else
+                sw = new StreamWriter(@"Lists/Garnish.txt", true, Encoding.Default);
 
-            StreamWriter sw = new StreamWriter(@"Dishes.txt", true, Encoding.Default);
-
-            sw.WriteLine(name + "," + basis);
+            sw.WriteLine(name);
             sw.Close();
 
             MakeDishesList();

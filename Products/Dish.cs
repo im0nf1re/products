@@ -8,14 +8,12 @@ namespace Products
 {
     class Dish
     {
-        public Dish(string name, bool basis, int id)
+        public Dish(string name, int id)
         {
             Id = id;
-            Basis = basis;
             Name = name;
         }
 
-        public bool Basis;
         public int Id;
         public string Name;
 
